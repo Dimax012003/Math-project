@@ -18,18 +18,30 @@ public class Function {
     	case 5:
     		return y*Math.exp(t*x);
     	case 6:
-    		return t*Math.pow(x, y);
+    		return y*Math.pow(x, t);
     	}
     	return 0;
     }
+    void setFunction(int fun) {
+    	this.fun=fun;
+    }
+    void setParametera(int a) {
+    	this.a=a;
+    }
+    void setParameterb(int b) {
+    	this.b=b;
+    }
     public static void main(String[] args) {
-    	Function a=new Function(1,1,1);
-        a.findsolution(0);
-        System.out.println(a.integral(0, 1));
+    	Function a=new Function(5,1,1);
+       // a.findsolution(0);
+       //System.out.println(a.integral(0, 1));
+      // System.out.println(a.derivative(2));
+        GUI gui=new GUI();
+        
     }
     double f(double x) {
     	
-    	return selectFunction(1,1,x,5)-selectFunction(1,1,x,6)-2;
+    	return selectFunction(a,b,x,fun);
     }
     double findsolution(double a) {
     	double i=0;
@@ -51,5 +63,9 @@ public class Function {
     		sum=sum+f(i+steps)*steps;
     	}
     	return sum;
+    }
+    double derivative(int a) {
+    	double n=100000;
+    	return (f(a+(a/n))-f(a))/(a+(a/n)-a);
     }
 }
